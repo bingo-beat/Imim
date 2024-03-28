@@ -1,18 +1,18 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 
 const AudioPlayer = ({ src }) => {
-  const audioRef = useRef(null);
-
   useEffect(() => {
-    audioRef.current.play();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty dependency array to trigger effect only once when component mounts
+    const audio = new Audio(src);
+    audio.loop = true;
+    audio.play();
 
-  return (
-    <div>
-      <audio ref={audioRef} src={src} />
-    </div>
-  );
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, [src]);
+
+  return null; // Since this component doesn't render anything, return null
 };
 
 export default AudioPlayer;
