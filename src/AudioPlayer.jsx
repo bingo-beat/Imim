@@ -12,7 +12,7 @@ const AudioPlayer = ({ src }) => {
     };
   }, [src]);
 
-  return null; // Since this component doesn't render anything, return null
+  return null;
 };
 
 export default AudioPlayer;
